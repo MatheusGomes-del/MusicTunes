@@ -17,22 +17,41 @@ class Login extends React.Component {
     this.clickButton = this.clickButton.bind(this)
   }
 
-  getInputValue = ({ target }) => {
+ /*  getInputValue = ({ target }) => {
     const { name } = this.state;
     const minNumber = 2;
 
     this.setState({
       name: target.value,
+    }, () => {
+      if  (name.length < minNumber) {
+        this.setState({
+          btnDisable: true,
+        });
+      } else {
+        this.setState({
+          btnDisable: false,
+        });
+      }
     });
-    if  (name.length >= minNumber) {
-      this.setState({
-        btnDisable: false,
-      });
-    } else {
-      this.setState({
-        btnDisable: true,
-      });
-    }
+  } */
+
+  getInputValue = ({ target }) => {
+    const minNumber = 3
+    this.setState({
+      name: target.value,
+    }, () => {
+      const { name } = this.state
+      if(name.length < minNumber) {
+        this.setState({
+          btnDisable: true,
+        })
+      } else {
+        this.setState({
+          btnDisable: false,
+        })
+      }
+    })
   }
 
     

@@ -12,29 +12,30 @@ class Search extends React.Component {
   }
 
   getNameArtist = ({ target }) => {
-    const { nameArtist } = this.state
-    const minNumber = 1
+    const minNumber = 2
     this.setState({
-       nameArtist: target.value,
+      nameArtist: target.value,
+    }, () => {
+      const { nameArtist } = this.state
+      if(nameArtist.length < minNumber) {
+        this.setState({
+          disabled: true,
+        })
+      } else {
+        this.setState({
+          disabled: false,
+        })
+      }
     })
-    if(nameArtist.length >= minNumber) {
-      this.setState({
-        disabled: false,
-      })
-    } else {
-      this.setState({
-        disabled: true,
-      })
-    }
   }
    
   render() {
-    const { disabled } = this.state
+    const { disabled, nameArtist } = this.state
     return (
       <div data-testid="page-search">
         <Header />
         <form action="">
-          <input type="text" data-testid="search-artist-input" onChange={ this.getNameArtist } />
+          <input type="text" data-testid="search-artist-input" name="nameArtist" value={ nameArtist } onChange={ this.getNameArtist } />
           <button disabled={ disabled } type='submit' data-testid="search-artist-button">Pesquisar</button>
         </form>
       </div>
