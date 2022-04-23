@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 
-
 class Login extends React.Component {
   constructor() {
     super();
@@ -13,11 +12,11 @@ class Login extends React.Component {
       btnDisable: true,
       loading: false,
     };
-   
-    this.clickButton = this.clickButton.bind(this)
+
+    this.clickButton = this.clickButton.bind(this);
   }
 
- /*  getInputValue = ({ target }) => {
+  /*  getInputValue = ({ target }) => {
     const { name } = this.state;
     const minNumber = 2;
 
@@ -37,70 +36,69 @@ class Login extends React.Component {
   } */
 
   getInputValue = ({ target }) => {
-    const minNumber = 3
+    const minNumber = 3;
     this.setState({
       name: target.value,
     }, () => {
-      const { name } = this.state
-      if(name.length < minNumber) {
+      const { name } = this.state;
+      if (name.length < minNumber) {
         this.setState({
           btnDisable: true,
-        })
+        });
       } else {
         this.setState({
           btnDisable: false,
-        })
+        });
       }
-    })
+    });
   }
 
-    
   clickButton(e) {
-    e.preventDefault()
+    e.preventDefault();
     const { history } = this.props;
-  
-     this.setState({
-       loading: true,
-     }, async () => {
-       const { name } = this.state
-       await createUser({ name })
-       history.push("/search")
-       this.setState({
-         loading: false,
-       })
-     });
-   }
 
-   render() {
-     const { btnDisable, loading } = this.state;
-     return (
-       <div data-testid="page-login">
-         <h1>Login</h1>
-         { loading ? <Loading /> : (
-           <form action="">
-           <label htmlFor="input-name">
-             <input
-               id="input-name"
-               name="name"
-               data-testid="login-name-input"
-               onChange={ this.getInputValue }
-             />
-           </label>
+    this.setState({
+      loading: true,
+    }, async () => {
+      const { name } = this.state;
+      await createUser({ name });
+      history.push('/search');
+      this.setState({
+        loading: false,
+      });
+    });
+  }
 
-           <button
-             disabled={ btnDisable }
-             data-testid="login-submit-button"
-             type="submit"
-             onClick={ this.clickButton }
-           >
-             Entrar
+  render() {
+    const { btnDisable, loading } = this.state;
+    return (
+      <div data-testid="page-login">
+        <h1>Login</h1>
+        { loading ? <Loading /> : (
+          <form action="">
+            <label htmlFor="input-name">
+              <input
+                id="input-name"
+                name="name"
+                data-testid="login-name-input"
+                onChange={ this.getInputValue }
+              />
+            </label>
 
-           </button>
-         </form>
-         )} 
-       </div>
-     );
-   }
+            <button
+              disabled={ btnDisable }
+              data-testid="login-submit-button"
+              type="submit"
+              onClick={ this.clickButton }
+            >
+              Entrar
+
+            </button>
+          </form>
+        )}
+      </div>
+    );
+  }
 }
 
 Login.propTypes = {
