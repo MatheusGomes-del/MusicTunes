@@ -1,49 +1,46 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from '../pages/Loading';
-import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
-    constructor() {
-        super()
+  constructor() {
+    super();
 
-        this.state = {
-            userName: '',
-            load: false,
-        }
-    }
+    this.state = {
+      userName: '',
+      load: false,
+    };
+  }
 
-    componentDidMount() {
+  componentDidMount() {
+    this.setState({
+      load: true,
+    }, async () => {
+      const user = await getUser();
+      this.setState({
+        load: false,
+        userName: user.name,
+      });
+    });
+  }
 
-        this.setState({
-            load: true,
-        }, async () => {
-           const user = await getUser()
-           this.setState({
-               load: false,
-               userName: user.name,
-           })
-        })
-    }
+  render() {
+    const { userName, load } = this.state;
+    return (
+      <div>
+        <header data-testid="header-component">
+          {load ? (<Loading />) : (
+            <p data-testid="header-user-name">{ userName }</p>
+          )}
+          <Link to="/search" data-testid="link-to-search">search</Link>
+          <Link to="/favorites" data-testid="link-to-favorites">favorites</Link>
+          <Link to="/profile" data-testid="link-to-profile">profile</Link>
 
-
-    render() {
-        const { userName, load } = this.state
-        return (
-            <div>
-                 <header data-testid="header-component">
-                  {load ? (<Loading />) : (
-                        <p data-testid="header-user-name">{ userName }</p>
-                  )}
-                   <Link to="/search" data-testid="link-to-search">search</Link>
-                   <Link to="/favorites" data-testid="link-to-favorites">favorites</Link>
-                   <Link to="/profile" data-testid="link-to-profile">profile</Link>
-
-                 </header>
-            </div>
-        )
-    }
+        </header>
+      </div>
+    );
+  }
 }
-
 
 export default Header;
