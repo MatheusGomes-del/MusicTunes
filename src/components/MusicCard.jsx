@@ -13,17 +13,28 @@ export default class MusicCard extends React.Component {
     };
   }
 
-  verifyCheck = () => {
-    this.setState({
-      checked: true,
-      loading: true,
-    }, async () => {
-      const { trackId } = this.props;
-      await addSong(trackId);
+  componentDidMount() {
+    const { favoriteSongs, trackId } = this.props;
+    if (favoriteSongs.some((favorite) => favorite.trackId === trackId)) {
+      this.setState({ checked: true });
+    } else {
+      this.setState({ checked: false });
+    }
+  }
+
+  verifyCheck = ({ target }) => {
+    if (target.checked) {
       this.setState({
-        loading: false,
+        checked: true,
+        loading: true,
+      }, async () => {
+        const { trackId } = this.props;
+        await addSong(trackId);
+        this.setState({
+          loading: false,
+        });
       });
-    });
+    }
   }
 
   render() {
