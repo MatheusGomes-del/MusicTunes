@@ -45,6 +45,7 @@ class Album extends React.Component {
           key={ index }
           trackName={ item.trackName }
           previewUrl={ item.previewUrl }
+          trackId={ item.trackId }
         />)).slice(1)}
       </div>
     );
