@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+import user from '../images/user.png';
 
 class Login extends React.Component {
   constructor() {
@@ -15,25 +16,6 @@ class Login extends React.Component {
 
     this.clickButton = this.clickButton.bind(this);
   }
-
-  /*  getInputValue = ({ target }) => {
-    const { name } = this.state;
-    const minNumber = 2;
-
-    this.setState({
-      name: target.value,
-    }, () => {
-      if  (name.length < minNumber) {
-        this.setState({
-          btnDisable: true,
-        });
-      } else {
-        this.setState({
-          btnDisable: false,
-        });
-      }
-    });
-  } */
 
   getInputValue = ({ target }) => {
     const minNumber = 3;
@@ -72,31 +54,36 @@ class Login extends React.Component {
   render() {
     const { btnDisable, loading } = this.state;
     return (
-      <div data-testid="page-login">
-        <h1>Login</h1>
-        { loading ? <Loading /> : (
-          <form action="">
-            <label htmlFor="input-name">
-              <input
-                id="input-name"
-                name="name"
-                data-testid="login-name-input"
-                onChange={ this.getInputValue }
-              />
-            </label>
-
-            <button
-              disabled={ btnDisable }
-              data-testid="login-submit-button"
-              type="submit"
-              onClick={ this.clickButton }
-            >
-              Entrar
-
-            </button>
-          </form>
-        )}
-      </div>
+      <section data-testid="page-login" id="container-login">
+        <div id="box-login" className="border-orange-400">
+          <div>
+            <img src={ user } alt="icon-user" className="icons" />
+          </div>
+          { loading ? <Loading /> : (
+            <form>
+              <label htmlFor="input-name">
+                <i className="bi bi-person" />
+                <input
+                  id="input-name"
+                  name="name"
+                  placeholder="User Name"
+                  data-testid="login-name-input"
+                  onChange={ this.getInputValue }
+                />
+              </label>
+              <button
+                className="bg-cyan-500 shadow-lg shadow-cyan-500/50 ..."
+                disabled={ btnDisable }
+                data-testid="login-submit-button"
+                type="submit"
+                onClick={ this.clickButton }
+              >
+                Entrar
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
     );
   }
 }

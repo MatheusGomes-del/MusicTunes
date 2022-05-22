@@ -52,6 +52,7 @@ class Album extends React.Component {
           previewUrl={ item.previewUrl }
           trackId={ item.trackId }
           favoriteSongs={ favoriteSongs.map((musics) => musics) }
+          response={ response }
         />)).slice(1)}
       </div>
     );

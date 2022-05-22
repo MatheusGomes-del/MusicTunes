@@ -13,7 +13,7 @@ export default class MusicCard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { favoriteSongs, trackId } = this.props;
     if (favoriteSongs.some((favorite) => favorite.trackId === trackId)) {
       this.setState({ checked: true });
@@ -33,6 +33,10 @@ export default class MusicCard extends React.Component {
         this.setState({
           loading: false,
         });
+      });
+    } else {
+      this.setState({
+        checked: false,
       });
     }
   }
