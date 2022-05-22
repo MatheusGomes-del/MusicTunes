@@ -54,10 +54,10 @@ class Login extends React.Component {
   render() {
     const { btnDisable, loading } = this.state;
     return (
-      <section data-testid="page-login" id="container-login">
-        <div id="box-login" className="border-orange-400">
+      <section data-testid="page-login">
+        <div id="box-login">
           <div>
-            <img src={ user } alt="icon-user" className="icons" />
+            <img src={ user } alt="icon-user" />
           </div>
           { loading ? <Loading /> : (
             <form>
