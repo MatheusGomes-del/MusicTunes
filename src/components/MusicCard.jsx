@@ -12,7 +12,6 @@ class MusicCard extends React.Component {
     this.state = {
       checked: false,
       loading: false,
-      favoriteMusic: [],
     };
   }
 
