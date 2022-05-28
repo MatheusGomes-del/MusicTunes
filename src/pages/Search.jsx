@@ -58,17 +58,20 @@ class Search extends React.Component {
     return (
       <div data-testid="page-search">
         <Header />
-        <form action="">
+        <form id="container-form-search">
           {loading ? <Loading />
             : (
               <>
                 <input
                   type="text"
                   data-testid="search-artist-input"
+                  placeholder="Name Artist"
+                  className="input-artist"
                   onChange={ this.getNameArtist }
                 />
                 <button
                   disabled={ disabled }
+                  className="button-search"
                   onClick={ this.clickButton }
                   type="submit"
                   data-testid="search-artist-button"
@@ -78,16 +81,18 @@ class Search extends React.Component {
                 </button>
               </>
             )}
-          {
-            loadingTwo
-              ? (
-                <div>
-                  <p>
-                    Resultado de álbuns de:
-                    {' '}
-                    { artista }
-                    {' '}
-                  </p>
+        </form>
+        {
+          loadingTwo
+            ? (
+              <div>
+                <p className="font-mono">
+                  Resultado de álbuns de:
+                  {' '}
+                  { artista }
+                  {' '}
+                </p>
+                <div className="grid gap-x-8 grid-cols-4 place-items-center">
                   { objListaMusicas === undefined || objListaMusicas.length === 0
                     ? <p>Nenhum álbum foi encontrado</p> : (
                       objListaMusicas.map((albuns, index) => (
@@ -97,22 +102,26 @@ class Search extends React.Component {
                           to={ `/album/${albuns.collectionId}` }
                         >
                           Album
-                          <div>
+                          <div className="square-albuns rounded-md shadow-2xl">
                             <img
                               alt={ albuns.artistName }
                               src={ albuns.artworkUrl100 }
                             />
-                            <p>{ albuns.collectionName }</p>
-                            <p>{ albuns.artistName }</p>
+                            <p
+                              className="text-albun font-mono"
+                            >
+                              { albuns.collectionName }
+                            </p>
+                            <p className="text-albun font-mono">{ albuns.artistName }</p>
                           </div>
                         </Link>
                       ))
                     )}
                 </div>
-              )
-              : false
-          }
-        </form>
+              </div>
+            )
+            : false
+        }
 
       </div>
     );

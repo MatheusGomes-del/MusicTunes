@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from '../pages/Loading';
+import nameLogo from '../images/nameLogo-removebg-preview.png';
 
 class Header extends React.Component {
   constructor() {
@@ -29,20 +30,32 @@ class Header extends React.Component {
     const { userName, load } = this.state;
     return (
       <div>
-        <header data-testid="header-component">
+        <header data-testid="header-component" className="container-header">
+          <div>
+            <img src={ nameLogo } alt="name-of-logo" className="img-logo-header" />
+          </div>
           {load ? (<Loading />) : (
-            <p data-testid="header-user-name">
-              Bem vindo(a)
-              {' '}
-              { userName }
-              !
-            </p>
+            <div className="square">
+              <p data-testid="header-user-name">
+                Bem vindo(a)!
+                {' '}
+                {userName}
+                !
+              </p>
+            </div>
           )}
-          <Link to="/search" data-testid="link-to-search">search</Link>
+        </header>
+        <div className="links grid grid-cols-3 divide-x">
+          <Link
+            to="/search"
+            data-testid="link-to-search"
+          >
+            search
+
+          </Link>
           <Link to="/favorites" data-testid="link-to-favorites">favorites</Link>
           <Link to="/profile" data-testid="link-to-profile">profile</Link>
-
-        </header>
+        </div>
       </div>
     );
   }

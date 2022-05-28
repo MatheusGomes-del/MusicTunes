@@ -40,21 +40,46 @@ class Album extends React.Component {
   render() {
     const { artistName,
       collectionName, response, artworkUrl, favoriteSongs } = this.state;
+    const { match: { params } } = this.props;
     return (
-      <div data-testid="page-album">
+      <>
         <Header />
-        <h1 data-testid="artist-name">{ artistName }</h1>
-        <h2 data-testid="album-name">{ collectionName }</h2>
-        <img src={ artworkUrl } alt="" />
-        {response.map((item, index) => (<MusicCard
-          key={ index }
-          trackName={ item.trackName }
-          previewUrl={ item.previewUrl }
-          trackId={ item.trackId }
-          favoriteSongs={ favoriteSongs.map((musics) => musics) }
-          response={ response }
-        />)).slice(1)}
-      </div>
+        <div data-testid="page-album" className="container-album-page">
+          <div className="container-album shadow-xl shadow-indigo-500/50">
+            <img
+              src={ artworkUrl }
+              alt="album-of-artist"
+              className="image-album"
+            />
+            <h1
+              data-testid="artist-name"
+              className="text-albun font-mono"
+            >
+              {artistName}
+
+            </h1>
+            <h2
+              data-testid="album-name"
+              className="text-albun font-mono"
+            >
+              {collectionName}
+
+            </h2>
+          </div>
+          <div>
+            {response.map((item, index) => (<MusicCard
+              key={ index }
+              trackName={ item.trackName }
+              previewUrl={ item.previewUrl }
+              trackId={ item.trackId }
+              favoriteSongs={ favoriteSongs.map((musics) => musics) }
+              response={ response }
+              collectionId={ params.id }
+            />)).slice(1)}
+          </div>
+        </div>
+
+      </>
     );
   }
 }

@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
-import user from '../images/user.png';
+import '../App.css';
+import logoTunes from '../images/logoTunes.png';
 
 class Login extends React.Component {
   constructor() {
@@ -54,25 +55,23 @@ class Login extends React.Component {
   render() {
     const { btnDisable, loading } = this.state;
     return (
-      <section data-testid="page-login">
-        <div id="box-login">
-          <div>
-            <img src={ user } alt="icon-user" />
-          </div>
+      <section data-testid="page-login" className="container">
+        <img src={ logoTunes } alt="logo-of-musicTunes" id="logo-img" />
+        <div id="box-login" className="container-login">
           { loading ? <Loading /> : (
-            <form>
+            <form id="container-form" className="shadow-2xl">
               <label htmlFor="input-name">
                 <i className="bi bi-person" />
                 <input
                   id="input-name"
                   name="name"
-                  placeholder="User Name"
+                  placeholder="First Name"
                   data-testid="login-name-input"
                   onChange={ this.getInputValue }
                 />
               </label>
               <button
-                className="bg-cyan-500 shadow-lg shadow-cyan-500/50 ..."
+                className="button-into"
                 disabled={ btnDisable }
                 data-testid="login-submit-button"
                 type="submit"
@@ -87,7 +86,6 @@ class Login extends React.Component {
     );
   }
 }
-
 Login.propTypes = {
   valueInput: PropTypes.string,
   createUser: PropTypes.func,
