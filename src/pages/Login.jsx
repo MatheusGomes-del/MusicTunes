@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 import '../App.css';
 import logoTunes from '../images/logoTunes.png';
-import { connect } from 'react-redux';
 import { infosLogin } from '../redux/action';
 
 class Login extends React.Component {
@@ -26,7 +26,6 @@ class Login extends React.Component {
     this.setState({
       [name]: value,
     }, () => {
-      const { name } = this.state;
       if (name.length < minNumber) {
         this.setState({
           btnDisable: true,
