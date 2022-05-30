@@ -28,7 +28,7 @@
     
 }
 
-#input-name {
+.input-style {
     margin: 20px;
     width: 519px;
     border: none;
@@ -168,6 +168,8 @@
 
 /*___xxx________*/
 
+/*Favorites*/
+
 .container-Favmusics {
     display: flex;
     justify-content: space-evenly;
@@ -179,4 +181,39 @@
 #imgFavMusic {
     margin: 10px;
     border-radius: 50%;
+}
+
+/* Profile */
+
+.container-profile {
+    display: flex;
+    padding: 20px;
+    height:  auto;
+    background-color: #FCE84E;
+}
+
+.square-profile {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+}
+
+.element-profile {
+    margin: 20px;
+    margin-right: 10px ;
+}
+
+.img-profile {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.container-picture-profile {
+    display: flex;
+    align-items: center;
 }

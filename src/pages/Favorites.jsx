@@ -12,7 +12,8 @@ class Favorites extends React.Component {
         { FavoriteMusics.map((music) => (
           <section
             key={ music.trackId }
-            className="container-Favmusics shadow-xl shadow-indigo-500/50"
+            className="container-Favmusics shadow-xl shadow-indigo-500/50
+             bg-gradient-to-r from-cyan-500 to-blue-500"
           >
             <div className="flex items-center">
               <img src={ music.artworkUrl100 } alt="album-of-artist" id="imgFavMusic" />

@@ -63,7 +63,11 @@ class MusicCard extends React.Component {
     return (
       (loading ? <Loading />
         : (
-          <section className="container-musics shadow-xl shadow-indigo-500/50">
+          <section
+            className="container-musics shadow-xl
+          shadow-indigo-500/50
+          "
+          >
             <div className="squares-musics">
               <p
                 className="text-albun font-mono"
@@ -87,6 +91,7 @@ class MusicCard extends React.Component {
                   type="checkbox"
                   onClick={ this.sendMusicsFavorites }
                   data-testid={ `checkbox-music-${trackId}` }
+                  className="accent-pink-500"
                 />
               </label>
             </div>

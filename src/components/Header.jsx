@@ -30,7 +30,12 @@ class Header extends React.Component {
     const { userName, load } = this.state;
     return (
       <div>
-        <header data-testid="header-component" className="container-header">
+        <header
+          data-testid="header-component"
+          className="container-header
+         bg-gradient-to-r
+         from-indigo-500 via-purple-500 to-pink-500"
+        >
           <div>
             <img src={ nameLogo } alt="name-of-logo" className="img-logo-header" />
           </div>

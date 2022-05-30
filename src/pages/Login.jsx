@@ -4,6 +4,8 @@ import { createUser } from '../services/userAPI';
 import Loading from './Loading';
 import '../App.css';
 import logoTunes from '../images/logoTunes.png';
+import { connect } from 'react-redux';
+import { infosLogin } from '../redux/action';
 
 class Login extends React.Component {
   constructor() {
@@ -11,6 +13,7 @@ class Login extends React.Component {
 
     this.state = {
       name: '',
+      email: '',
       btnDisable: true,
       loading: false,
     };
@@ -18,10 +21,10 @@ class Login extends React.Component {
     this.clickButton = this.clickButton.bind(this);
   }
 
-  getInputValue = ({ target }) => {
+  getInputValue = ({ target: { name, value } }) => {
     const minNumber = 3;
     this.setState({
-      name: target.value,
+      [name]: value,
     }, () => {
       const { name } = this.state;
       if (name.length < minNumber) {
@@ -36,6 +39,12 @@ class Login extends React.Component {
     });
   }
 
+  sendInformationUser = () => {
+    const { infosUser } = this.props;
+    const { email, name } = this.state;
+    infosUser({ email, name });
+  }
+
   clickButton(e) {
     e.preventDefault();
     const { history } = this.props;
@@ -46,6 +55,9 @@ class Login extends React.Component {
       const { name } = this.state;
       await createUser({ name });
       history.push('/search');
+
+      this.sendInformationUser();
+
       this.setState({
         loading: false,
       });
@@ -63,10 +75,20 @@ class Login extends React.Component {
               <label htmlFor="input-name">
                 <i className="bi bi-person" />
                 <input
-                  id="input-name"
+                  className="input-style"
                   name="name"
                   placeholder="First Name"
                   data-testid="login-name-input"
+                  onChange={ this.getInputValue }
+                />
+              </label>
+              <label htmlFor="input-email">
+                <input
+                  id="input-email"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="input-style"
                   onChange={ this.getInputValue }
                 />
               </label>
@@ -86,10 +108,15 @@ class Login extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  infosUser: (infos) => dispatch(infosLogin(infos)),
+});
+
 Login.propTypes = {
   valueInput: PropTypes.string,
   createUser: PropTypes.func,
   loading: PropTypes.bool,
 }.isRequired;
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);
