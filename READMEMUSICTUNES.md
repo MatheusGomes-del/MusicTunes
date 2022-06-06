@@ -58,6 +58,10 @@ responsible for the project
 
 | [<img src="https://avatars.githubusercontent.com/u/85370960?v=4" width=115><br><sub>Matheus Gomes</sub>](https://github.com/Diana-ops)
 
+## Reference: 
+
+:warning:The services folder and its files contain the functions that make the requests and were ready codes made by Trybe!
+
 ## License 
 
 The [MIT License]() (MIT)
