@@ -34,7 +34,7 @@
 
 ## Application deploy link :dash:
 
-> Application deploy. https://musictunes.surge.sh/
+> Application deploy. http://musictunespro.surge.sh/
 
 ... 
 <img src="https://github.com/MatheusGomes-del/MusicTunes/blob/main/src/images/ezgif.com-gif-maker.gif" >
